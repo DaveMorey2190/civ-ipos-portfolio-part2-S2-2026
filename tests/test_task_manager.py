@@ -3,11 +3,7 @@ from src.task_manager import add_task, delete_task, filter_tasks_by_status
 from src.file_handler import save_tasks, load_tasks
 from src.task import Task
 import os
-<<<<<<< HEAD
-from datetime import date, timedelta
-=======
 import sched
->>>>>>> issue-2
 
 TEST_FILE = "test_tasks.bin"
 
@@ -60,7 +56,6 @@ class TestTaskManager(unittest.TestCase):
             notifications,
             ["Reminder: Upcoming Task is due on 12-10-2026."]
         )
->>>>>>> issue-2
 
     def setUp(self):
         """
