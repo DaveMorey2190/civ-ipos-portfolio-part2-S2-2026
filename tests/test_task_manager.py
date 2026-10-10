@@ -3,6 +3,7 @@ from src.task_manager import add_task, delete_task, filter_tasks_by_status
 from src.file_handler import save_tasks, load_tasks
 from src.task import Task
 import os
+from datetime import date, timedelta
 
 TEST_FILE = "test_tasks.bin"
 
@@ -12,6 +13,22 @@ class TestTaskManager(unittest.TestCase):
     Unit tests for Task Manager functionalities including adding, deleting, filtering,
     and persisting tasks to and from a binary file.
     """
+
+    def test_add_task_with_past_due_date(self):
+        """
+        Check that a task with a past due date is rejected.
+        """
+        yesterday = (date.today() - timedelta(days=1)).strftime("%d-%m-%Y")
+
+        result = add_task(
+            self.tasks,
+            "Past Date Task",
+            "This task should be rejected",
+            yesterday
+        )
+
+        self.assertFalse(result)
+        self.assertEqual(len(self.tasks), 0)
 
     def setUp(self):
         """
