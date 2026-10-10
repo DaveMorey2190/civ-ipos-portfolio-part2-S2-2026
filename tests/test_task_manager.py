@@ -3,7 +3,11 @@ from src.task_manager import add_task, delete_task, filter_tasks_by_status
 from src.file_handler import save_tasks, load_tasks
 from src.task import Task
 import os
+<<<<<<< HEAD
 from datetime import date, timedelta
+=======
+import sched
+>>>>>>> issue-2
 
 TEST_FILE = "test_tasks.bin"
 
@@ -29,6 +33,34 @@ class TestTaskManager(unittest.TestCase):
 
         self.assertFalse(result)
         self.assertEqual(len(self.tasks), 0)
+
+    def test_task_due_date_reminder(self):
+        """
+        Check that the scheduler triggers the task reminder.
+        """
+        notifications = []
+
+        def notify_user(task):
+            notifications.append(
+                f"Reminder: {task.title} is due on {task.due_date}."
+            )
+
+        task = Task(
+            "Upcoming Task",
+            "Complete this soon",
+            "12-10-2026",
+            "pending"
+        )
+
+        scheduler = sched.scheduler()
+        scheduler.enter(0, 1, notify_user, argument=(task,))
+        scheduler.run()
+
+        self.assertEqual(
+            notifications,
+            ["Reminder: Upcoming Task is due on 12-10-2026."]
+        )
+>>>>>>> issue-2
 
     def setUp(self):
         """
