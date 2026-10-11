@@ -1,7 +1,29 @@
 from src.task import Task
 from src.file_handler import save_tasks
 from datetime import datetime
+from datetime import date
+from dateutil.parser import parse, ParserError
 
+def notify_due_tasks(tasks):
+    """
+    Display reminders for pending tasks due tomorrow.
+    """
+    for task in tasks:
+        if task.status != "pending":
+            continue
+
+        try:
+            due_date = parse(task.due_date, dayfirst=True, fuzzy=False).date()
+        except (ParserError, OverflowError):
+            continue
+
+        days_remaining = (due_date - date.today()).days
+
+        if days_remaining == 1:
+            print(
+                f"\nReminder: {task.title} is due tomorrow "
+                f"({task.due_date})."
+            )
 
 def add_task(tasks, title, description, due_date):
     """
