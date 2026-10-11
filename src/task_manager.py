@@ -2,7 +2,6 @@ from src.task import Task
 from src.file_handler import save_tasks
 from datetime import datetime
 
-
 def add_task(tasks, title, description, due_date):
     """
     Add a new task to the task list.
@@ -29,10 +28,16 @@ def add_task(tasks, title, description, due_date):
 
     # Validate due date format
     try:
-        datetime.strptime(due_date, "%d-%m-%Y")
+        parsed_date = datetime.strptime(due_date, "%d-%m-%Y").date()
+
+        if parsed_date < datetime.today().date():
+            print("Error: The due date cannot be in the past.")
+            return False
+        
     except ValueError:
         print("Error: Invalid date format. Use DD-MM-YYYY.")
         return False
+    
 
     tasks.append(Task(title, description, due_date))
     save_tasks(tasks)
