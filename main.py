@@ -4,16 +4,14 @@ from src.file_handler import load_tasks
 
 def main():
     tasks = load_tasks()
-   
     while True:
-        
-        print("Task Manager CLI ")
+        print("\nTask Manager CLI")
         print("1. Add Task")
         print("2. Delete Task")
         print("3. List Tasks")
-        print("4. Exit \n")
+        print("4. Exit")
 
-        choice = input("Enter your choice: \n")
+        choice = input("Enter your choice: ")
         if choice == "1":
             title = input("Title: ")
             description = input("Description: ")
