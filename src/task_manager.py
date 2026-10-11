@@ -1,6 +1,7 @@
 from src.task import Task
 from src.file_handler import save_tasks
-from datetime import datetime
+from datetime import date
+from dateutil.parser import parse, ParserError
 
 def add_task(tasks, title, description, due_date):
     """
@@ -26,16 +27,16 @@ def add_task(tasks, title, description, due_date):
         print("Error: A task with this title already exists.")
         return False
     
-    # Validate due date format
+   # Validate the due date using python-dateutil
     try:
-        parsed_date = datetime.strptime(due_date, "%d-%m-%Y").date()
+        parsed_date = parse(due_date, dayfirst=True, fuzzy=False).date()
 
-        if parsed_date < datetime.today().date():
+        if parsed_date < date.today():
             print("Error: The due date cannot be in the past.")
             return False
-        
-    except ValueError:
-        print("Error: Invalid date format. Use DD-MM-YYYY.")
+
+    except (ParserError, OverflowError):
+        print("Error: Invalid date.")
         return False
     
 

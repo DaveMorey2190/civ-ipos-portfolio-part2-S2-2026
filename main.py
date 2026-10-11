@@ -1,15 +1,11 @@
 from src.task_manager import add_task, delete_task, list_tasks
 from src.file_handler import load_tasks
-from datetime import date, datetime, timedelta
+
 
 def main():
     tasks = load_tasks()
    
     while True:
-
-        # DEBUG
-        print("Today's date:", datetime.today().date())
-        print("\n")
         
         print("Task Manager CLI ")
         print("1. Add Task")
