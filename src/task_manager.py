@@ -7,6 +7,20 @@ from dateutil.parser import parse, ParserError
 def notify_due_tasks(tasks):
     """
     Display reminders for pending tasks due tomorrow.
+    
+    Args:
+        tasks (list): The list of existing Task objects. Each task
+            contains a due date and a status.
+
+    Returns:
+        None.
+
+    Raises:
+        None: 
+
+    Side Effects:
+        - Prints a reminder containing the title and due date of
+          each pending task due tomorrow.
     """
     for task in tasks:
         if task.status != "pending":
@@ -20,10 +34,7 @@ def notify_due_tasks(tasks):
         days_remaining = (due_date - date.today()).days
 
         if days_remaining == 1:
-            print(
-                f"\nReminder: {task.title} is due tomorrow "
-                f"({task.due_date})."
-            )
+            print(f"\nReminder: {task.title} is due tomorrow "f"({task.due_date}).")
 
 def add_task(tasks, title, description, due_date):
     """
