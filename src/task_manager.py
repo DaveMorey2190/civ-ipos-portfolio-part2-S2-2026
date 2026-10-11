@@ -26,6 +26,11 @@ def add_task(tasks, title, description, due_date):
         print("Error: A task with this title already exists.")
         return False
 
+    # DEBUG
+    print("Running task manager:", __file__)
+    print("Entered date:", parsed_date)
+    print("Today's date:", datetime.today().date())
+    
     # Validate due date format
     try:
         parsed_date = datetime.strptime(due_date, "%d-%m-%Y").date()
