@@ -293,3 +293,48 @@ When the PR is merged, the Issue will be automatically closed if you included "f
    - Answered knowledge questions with thoughtful insights.
 
 ---
+
+
+Updated Documentation:
+
+### 1. Dependencies
+
+- python-dateutil: Parses stored task due dates for reminder checks.
+- schedule: Schedules checks for pending tasks due tomorrow.
+
+### 2. Setup
+
+From the project root, create and activate a virtual environment by typing the following:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-dev.txt
+```
+
+### 3. Run the application
+
+```powershell
+python main.py
+```
+
+Due dates are entered in DD-MM-YYYY format.
+
+### 4. Due-date reminders
+
+The scheduler is configured to check pending tasks due tomorrow
+every 10 seconds. Each matching task produces a reminder showing
+its title and due date. Completed tasks are excluded.
+
+The application must remain open. While the CLI waits for input,
+scheduled checks are delayed until the menu loop repeats.
+
+Reminders repeat at each check while the task qualifies.
+
+### 5. Run tests
+
+Run from the project root:
+
+```powershell
+python -m unittest discover -s .\tests -p "test_*.py" -v
+```
