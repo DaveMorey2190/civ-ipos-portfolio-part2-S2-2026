@@ -3,6 +3,7 @@ from src.file_handler import save_tasks
 from datetime import date
 from dateutil.parser import parse, ParserError
 
+
 def add_task(tasks, title, description, due_date):
     """
     Add a new task to the task list.
@@ -26,8 +27,8 @@ def add_task(tasks, title, description, due_date):
     if any(task.title == title for task in tasks):
         print("Error: A task with this title already exists.")
         return False
-    
-   # Validate the due date 
+
+    # Validate the due date
     try:
         # Interpret ambiguous dates with the day first.
         parsed_date = parse(due_date, dayfirst=True, fuzzy=False).date()
@@ -40,7 +41,6 @@ def add_task(tasks, title, description, due_date):
     except (ParserError, OverflowError):
         print("Error: Invalid date.")
         return False
-    
 
     tasks.append(Task(title, description, due_date))
     save_tasks(tasks)
