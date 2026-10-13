@@ -27,12 +27,12 @@ def add_task(tasks, title, description, due_date):
         print("Error: A task with this title already exists.")
         return False
     
-   # Validate the due date using python-dateutil
+   # Validate the due date 
     try:
         # Interpret ambiguous dates with the day first.
         parsed_date = parse(due_date, dayfirst=True, fuzzy=False).date()
 
-    # Reject past dates while allowing tasks due today.
+    # Reject past dates.
         if parsed_date < date.today():
             print("Error: The due date cannot be in the past.")
             return False

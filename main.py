@@ -8,19 +8,9 @@ import threading
 
 def main():
     tasks = load_tasks()
-
-    while True:
-        
-        print("Task Manager CLI ")
-
-    # Check pending tasks every 10seconds
-    scheduler = schedule.Scheduler()
-    scheduler.every(10).seconds.do(notify_due_tasks, tasks)
     
     while True:
         
-        # Run due reminder checks when the menu loop resumes.
-        scheduler.run_pending()
         print("\nTask Manager CLI")
 
         print("1. Add Task")
