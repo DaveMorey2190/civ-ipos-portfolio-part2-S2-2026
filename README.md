@@ -180,7 +180,7 @@ python -m unittest discover test
 3. Rerun the tests to ensure they pass:
 
 ```bash
-python -m unittest discover test
+python -m unittest discover tests
 ```
 
 ---
