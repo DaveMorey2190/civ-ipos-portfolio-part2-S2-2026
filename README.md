@@ -301,10 +301,12 @@ Updated Documentation:
 
 - python-dateutil: Parses entered date strings. The application rejects
   invalid dates and due dates in the past.
+- python-dateutil: Parses stored task due dates for reminder checks.
+- schedule: Schedules checks for pending tasks due tomorrow.
 
 ### 2. Setup
 
-From the project root, create and activate a virtual environment:
+From the project root, create and activate a virtual environment by typing the following:
 
 ```powershell
 python -m venv .venv
@@ -312,7 +314,7 @@ python -m venv .venv
 python -m pip install -r requirements-dev.txt
 ```
 
-### 6. Run the application
+### 3. Run the application
 
 ```powershell
 python main.py
@@ -321,12 +323,23 @@ python main.py
 Enter due dates in DD-MM-YYYY format. Tasks due today are allowed;
 past due dates are rejected with an error message.
 
-### 7. Date validation
+### 4. Date validation
 
 The application uses python-dateutil to parse due dates before adding
 tasks. If validation fails, the task is not added or saved.
 
-### 8. Run tests
+### 5. Due-date reminders
+
+The scheduler is configured to check pending tasks due tomorrow
+every 10 seconds. Each matching task produces a reminder showing
+its title and due date. Completed tasks are excluded.
+
+The application must remain open. While the CLI waits for input,
+scheduled checks are delayed until the menu loop repeats.
+
+Reminders repeat at each check while the task qualifies.
+
+### 6. Run tests
 
 Run from the project root:
 
