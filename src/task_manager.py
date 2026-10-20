@@ -33,7 +33,7 @@ def add_task(tasks, title, description, due_date):
         # Interpret ambiguous dates with the day first.
         parsed_date = parse(due_date, dayfirst=True, fuzzy=False).date()
 
-    # Reject past dates.
+        # Reject past dates.
         if parsed_date < date.today():
             print("Error: The due date cannot be in the past.")
             return False
