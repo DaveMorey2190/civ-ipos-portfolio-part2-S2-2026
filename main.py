@@ -1,5 +1,3 @@
-from sched import scheduler
-
 from src.task_manager import add_task, delete_task, list_tasks, notify_due_tasks
 from src.file_handler import load_tasks
 import schedule
