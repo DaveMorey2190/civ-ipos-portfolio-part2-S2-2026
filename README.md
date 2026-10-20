@@ -180,7 +180,7 @@ python -m unittest discover test
 3. Rerun the tests to ensure they pass:
 
 ```bash
-python -m unittest discover test
+python -m unittest discover tests
 ```
 
 ---
@@ -198,6 +198,7 @@ pip freeze > requirements.txt
 ```
 
 ---
+
 
 ### 8. Run your workflows locally
 
@@ -293,3 +294,42 @@ When the PR is merged, the Issue will be automatically closed if you included "f
    - Answered knowledge questions with thoughtful insights.
 
 ---
+
+Updated Documentation:
+
+### 1. Dependencies
+
+- python-dateutil: Parses entered date strings. The application rejects
+  invalid dates and due dates in the past.
+
+### 2. Setup
+
+From the project root, create and activate a virtual environment:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-dev.txt
+```
+
+### 6. Run the application
+
+```powershell
+python main.py
+```
+
+Enter due dates in DD-MM-YYYY format. Tasks due today are allowed;
+past due dates are rejected with an error message.
+
+### 7. Date validation
+
+The application uses python-dateutil to parse due dates before adding
+tasks. If validation fails, the task is not added or saved.
+
+### 8. Run tests
+
+Run from the project root:
+
+```powershell
+python -m unittest discover -s .\tests -p "test_*.py" -v
+```
