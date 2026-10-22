@@ -1,7 +1,6 @@
 from src.task_manager import add_task, delete_task, list_tasks, notify_due_tasks
 from src.file_handler import load_tasks
 import schedule
-import threading
 
 
 def main():
@@ -9,7 +8,7 @@ def main():
 
     scheduler = schedule.Scheduler()
     scheduler.every(10).seconds.do(notify_due_tasks, tasks)
-    
+
     while True:
         scheduler.run_pending()
         print("\nTask Manager CLI")
