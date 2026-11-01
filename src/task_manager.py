@@ -28,18 +28,28 @@ def add_task(tasks, title, description, due_date):
         print("Error: A task with this title already exists.")
         return False
 
-    # Validate the due date
+    # Validate the due date using dateutil.
     try:
-        # Interpret ambiguous dates with the day first.
-        parsed_date = parse(due_date, dayfirst=True, fuzzy=False).date()
+        # Parse the supplied date, interpreting the day first.
+        parsed_date = parse(
+            due_date,
+            dayfirst=True,
+            yearfirst=False,
+            fuzzy=False
+        ).date()
+
+        # Ensure the input uses the required DD-MM-YYYY format.
+        if parsed_date.strftime("%d-%m-%Y") != due_date:
+            print("Error: Invalid date format. Use DD-MM-YYYY.")
+            return False
 
         # Reject past dates.
         if parsed_date < date.today():
             print("Error: The due date cannot be in the past.")
             return False
 
-    except (ParserError, OverflowError):
-        print("Error: Invalid date.")
+    except (ParserError, ValueError, OverflowError):
+        print("Error: Invalid date format. Use DD-MM-YYYY.")
         return False
 
     tasks.append(Task(title, description, due_date))
