@@ -306,7 +306,7 @@ Updated Documentation:
 
 From the project root, create and activate a virtual environment:
 
-```powershell
+```in powershell run:
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements-dev.txt
@@ -314,7 +314,7 @@ python -m pip install -r requirements-dev.txt
 
 ### 6. Run the application
 
-```powershell
+```in powershell run: 
 python main.py
 ```
 
@@ -330,6 +330,6 @@ tasks. If validation fails, the task is not added or saved.
 
 Run from the project root:
 
-```powershell
-python -m unittest discover -s .\tests -p "test_*.py" -v
+``` To test file handler, in powershell run:
+python -m unittest discover tests
 ```

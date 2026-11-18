@@ -1,6 +1,9 @@
+import schedule
+import time
+
 from src.task_manager import add_task, delete_task, list_tasks
 from src.file_handler import load_tasks
-import schedule
+from src.task_manager import notify_due_tasks
 
 
 def main():
@@ -10,6 +13,8 @@ def main():
     scheduler.every(10).seconds.do(notify_due_tasks, tasks)
 
     while True:
+
+        scheduler.run_pending()
 
         print("\nTask Manager CLI")
 

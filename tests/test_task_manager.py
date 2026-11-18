@@ -45,7 +45,7 @@ class TestTaskManager(unittest.TestCase):
         task = Task(
             "Upcoming Task",
             "Complete this soon",
-            "12-10-2026",
+            "12-12-2026",
             "pending"
         )
 
@@ -55,7 +55,7 @@ class TestTaskManager(unittest.TestCase):
 
         self.assertEqual(
             notifications,
-            ["Reminder: Upcoming Task is due on 12-10-2026."]
+            ["Reminder: Upcoming Task is due on 12-12-2026."]
         )
 
     def setUp(self):
@@ -102,7 +102,7 @@ class TestTaskManager(unittest.TestCase):
         Test adding a task with an invalid due date format.
         Verify that the function handles invalid input gracefully and returns False.
         """
-        result = add_task(self.tasks, "Test Task", "Description", "2024-12-01")
+        result = add_task(self.tasks, "Test Task", "Description", "2026-12-01")
         self.assertFalse(result)
 
     def test_delete_task(self):

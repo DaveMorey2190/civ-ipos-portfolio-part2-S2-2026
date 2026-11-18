@@ -1,7 +1,42 @@
 from src.task import Task
+from dateutil.parser import parse, ParserError
+from datetime import datetime, date
 from src.file_handler import save_tasks
-from datetime import datetime
 
+
+def notify_due_tasks(tasks):
+    """
+    Check tasks and notify the user about tasks
+    that are due today or overdue.
+    """
+
+    today = date.today()
+
+    for task in tasks:
+
+        # Access attributes from the Task object
+        due_date = task.due_date
+
+        if not due_date:
+            continue
+
+        try:
+            parsed_date = datetime.strptime(
+                str(due_date), "%d-%m-%Y"
+            ).date()
+
+            if parsed_date == today:
+                print(
+                    f"\nNOTIFICATION: Task due today: {task.title}"
+                )
+
+            elif parsed_date < today:
+                print(
+                    f"\nREMINDER: Task overdue: {task.title}"
+                )
+
+        except ValueError:
+            print(f"Invalid due date for task: {task.title}")
 
 
 def add_task(tasks, title, description, due_date):
